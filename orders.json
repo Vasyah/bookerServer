@@ -1,0 +1,49 @@
+{
+    "orders": [
+        {
+            "id": 1,
+            "firstName": "Василий",
+            "lastName": "Пупкин",
+            "phone": "79131231231",
+            "services": [
+                {
+                    "id": 0,
+                    "name": "Ноги",
+                    "category": "Эпиляпция",
+                    "price": 600,
+                    "time": 90
+                },
+                {
+                    "id": 1,
+                    "name": "Подмышки",
+                    "category": "Эпиляпция",
+                    "price": 300,
+                    "time": 45
+                }
+            ],
+            "orderDate": "20-01-2021",
+            "orderTimeStart": "18:30",
+            "paymentWay": "Наличные",
+            "totalPrice": "900"
+        },
+        {
+            "id": 2,
+            "firstName": "Насилий",
+            "lastName": "Пупкин",
+            "phone": "79131231231",
+            "services": [
+                {
+                    "id": 0,
+                    "name": "Ноги",
+                    "category": "Эпиляпция",
+                    "price": 600,
+                    "time": 90
+                }
+            ],
+            "orderDate": "21-01-2021",
+            "orderTimeStart": "19:30",
+            "paymentWay": "Наличные",
+            "totalPrice": "900"
+        }
+    ]
+}

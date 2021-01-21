@@ -1,0 +1,10 @@
+{
+  "extends": ["airbnb-base"],
+  "rules": {
+    "no-console": "off",
+    "no-unused-vars": ["warn", {"args": "after-used", "ignoreRestSiblings": false }],
+    "eol-last": ["error", "windows"],
+    "linebreak-style": ["error", "windows"],
+    "indent": ["error", "4"]
+}
+}
