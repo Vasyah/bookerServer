@@ -4,29 +4,12 @@ const router = express.Router();
 
 const tasksController = require('../controllers/tasks');
 
-// GET /tasks
-// router.get('/', tasksController.getTasks);
-
-// GET /tasks/:id
-// router.get('/:id', tasksController.getTask);
-
-// POST /tasks
-// router.post('/', tasksController.createTask);
-
-// PATCH /tasks/:id
-// router.patch('/:id', tasksController.editTask);
-
-// DELETE /tasks/:id
-// router.delete('/:id', tasksController.deleteTask);
-
-
-
 // post - здесь мы можем и добавить, и удалить
 // ADMIN
 const root = '/';
 const info = '/info';
 const orders = '/orders';
-
+const services = '/services';
 // INFO - GET/POST/PATCH
 router.get(root, tasksController.getInfo);
 router.post(info, tasksController.createInfo);
@@ -42,5 +25,6 @@ router.post(orders, tasksController.createOrder);
 // router.patch(orders, tasksController.editOrder);
 // удалять заказ может только админ
 // router.delete(orders, tasksController.deleteOrder);
-
+router.post(services, tasksController.createService);
+router.get(services, tasksController.getServices);
 module.exports = router;

@@ -35,16 +35,31 @@ const getOrders = (req, res, next) => {
 const getOrder = (req, res, next) => {
   const { id } = req.params;
 
-  const task = db
+  const order = db
     .get('orders')
     .find({ id })
     .value();
 
   if (!task) {
-    throw new Error('TASK_NOT_FOUND');
+    throw new Error('ORDER_NOT_FOUND');
   }
 
-  res.json({ status: 'OK', data: task });
+  res.json({ status: 'OK', data: order });
+};
+
+const getServices = (req, res, next) => {
+  const { id } = req.params;
+
+  const service = db
+    .get('services')
+    .find({ id })
+    .value();
+
+  if (!task) {
+    throw new Error('SERVICE_NOT_FOUND');
+  }
+
+  res.json({ status: 'OK', data: service });
 };
 
 
@@ -156,6 +171,49 @@ const createOrder = (req, res, next) => {
   });
 };
 
+const createService = (req, res, next) => {
+  const taskSchema = {
+    type: 'object',
+    properties: {
+      title: { type: 'string' },
+      time: { type: 'number' },
+      price: { type: 'number' },
+    },
+    required: [
+      'title',
+      'time',
+      'price'
+    ],
+    additionalProperties: false
+  };
+
+  const validationResult = validate(req.body, taskSchema);
+  if (!validationResult.valid) {
+    throw new Error('INVALID_JSON_OR_API_FORMAT');
+  }
+
+  const { title, time, price } = req.body;
+  const service = {
+    id: shortid.generate(),
+    title,
+    time,
+    price,
+  };
+
+  try {
+    db.get('services')
+      .push(service)
+      .write();
+  } catch (error) {
+    throw new Error(error);
+  }
+
+  res.json({
+    status: 'OK',
+    data: service
+  });
+};
+
 const editTask = (req, res, next) => {
   const { id } = req.params;
 
@@ -184,7 +242,8 @@ module.exports = {
   getOrders,
   getOrder,
   createOrder,
-  // getTask,
+  createService,
+  getServices,
   createInfo,
   editTask,
   deleteTask
