@@ -48,18 +48,14 @@ const getOrder = (req, res, next) => {
 };
 
 const getServices = (req, res, next) => {
-  const { id } = req.params;
 
-  const service = db
-    .get('services')
-    .find({ id })
-    .value();
+  const services = db.get('services')
 
-  if (!task) {
-    throw new Error('SERVICE_NOT_FOUND');
+  if (!services) {
+    throw new Error('SERVICES_NOT_FOUND');
   }
 
-  res.json({ status: 'OK', data: service });
+  res.json({ status: 'OK', data: services });
 };
 
 
@@ -176,8 +172,8 @@ const createService = (req, res, next) => {
     type: 'object',
     properties: {
       title: { type: 'string' },
-      time: { type: 'number' },
-      price: { type: 'number' },
+      time: { type: 'string' },
+      price: { type: 'string' },
     },
     required: [
       'title',
@@ -186,7 +182,7 @@ const createService = (req, res, next) => {
     ],
     additionalProperties: false
   };
-
+  console.log(typeof(req.body.time));
   const validationResult = validate(req.body, taskSchema);
   if (!validationResult.valid) {
     throw new Error('INVALID_JSON_OR_API_FORMAT');

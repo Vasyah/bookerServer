@@ -26,6 +26,8 @@
     "express": "^4.17.1",
     "jsonschema": "^1.2.4",
     "lowdb": "^1.0.0",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
     "shortid": "^2.2.15"
   }
 }
