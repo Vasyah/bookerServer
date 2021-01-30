@@ -182,7 +182,7 @@ const createService = (req, res, next) => {
     ],
     additionalProperties: false
   };
-  console.log(typeof(req.body.time));
+  console.log(typeof (req.body.time));
   const validationResult = validate(req.body, taskSchema);
   if (!validationResult.valid) {
     throw new Error('INVALID_JSON_OR_API_FORMAT');
@@ -210,25 +210,23 @@ const createService = (req, res, next) => {
   });
 };
 
-const editTask = (req, res, next) => {
+const editService = (req, res, next) => {
   const { id } = req.params;
-
   const editedTask = db
-    .get('tasks')
+    .get('services')
     .find({ id })
     .assign(req.body)
     .value();
-
   db.write();
 
   res.json({ status: 'OK', data: editedTask });
 };
 
-const deleteTask = (req, res, next) => {
-  db.get('tasks')
-    .remove({ id: req.params.id })
+const deleteService = (req, res, next) => {
+  const { id } = req.params;
+  db.get('services')
+    .remove({ id })
     .write();
-
   res.json({ status: 'OK' });
 };
 
@@ -241,6 +239,6 @@ module.exports = {
   createService,
   getServices,
   createInfo,
-  editTask,
-  deleteTask
+  editService,
+  deleteService
 };

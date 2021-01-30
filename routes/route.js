@@ -27,4 +27,6 @@ router.post(orders, tasksController.createOrder);
 // router.delete(orders, tasksController.deleteOrder);
 router.post(services, tasksController.createService);
 router.get(services, tasksController.getServices);
+router.patch(`${services}/:id`, tasksController.editService);
+router.delete(`${services}/:id`, tasksController.deleteService);
 module.exports = router;
